@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>DBSCAN Results</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background-color: #FAFAFA; color: #111111; margin: 0; padding: 60px 20px; }
+      .container { max-width: 650px; margin: 0 auto; }
+      .back-link { text-decoration: none; color: #111111; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; margin-bottom: 40px; }
+      .back-link:hover { color: #FF5A36; }
+      h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0 0 10px 0; }
+      .dashboard-metrics { display: flex; gap: 30px; margin: 30px 0; border-top: 3px solid #111111; border-bottom: 3px solid #111111; padding: 20px 0; text-transform: uppercase; }
+      .metric-block { font-size: 0.9rem; font-weight: 800; color: #111111; }
+      .metric-block div { font-size: 2rem; font-weight: 900; color: #FF5A36; }
+      .metric-block.noise div { color: #111111; }
+      .plot-wrapper { border: 3px solid #111111; padding: 15px; background: #FAFAFA; width: 100%; box-sizing: border-box; margin-bottom: 30px; }
+      img { width: 100%; height: auto; display: block; }
+      .btn { display: inline-block; text-align: center; border: 3px solid #111111; padding: 16px; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; color: #111111; transition: all 0.1s; }
+      .btn:hover { background: #111111; color: #FAFAFA; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="back-link">← Dashboard</a>
+      <h2>Density Vectors Mapped</h2>
+
+      <div class="dashboard-metrics">
+        <div class="metric-block">
+          Identified Clusters
+          <div>{{ n_clusters }}</div>
+        </div>
+        <div class="metric-block noise">
+          Isolated Noise Points
+          <div>{{ n_noise }}</div>
+        </div>
+      </div>
+
+      <div class="plot-wrapper">
+        <img src="data:image/png;base64,{{ plot_url }}" alt="DBSCAN Topography Plot">
+      </div>
+
+      <a href="/dbscan" class="btn">Mutate Hyperparameters</a>
+    </div>
+  </body>
+</html>
