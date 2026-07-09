@@ -1,0 +1,12 @@
+flask
+pandas
+matplotlib
+mlxtend
+scikit-learn
+transformers
+pillow
+gTTS
+torch
+sentencepiece
+protobuf
+soundfile
