@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Association Rules Mining</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background-color: #FAFAFA; color: #111111; margin: 0; padding: 60px 20px; }
+      .container { max-width: 800px; margin: 0 auto; }
+      .back-link { text-decoration: none; color: #111111; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; margin-bottom: 40px; }
+      .back-link:hover { color: #FF5A36; }
+      h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0 0 10px 0; }
+      p { margin: 0 0 30px 0; opacity: 0.7; }
+      form { display: flex; flex-direction: column; gap: 20px; border-top: 3px solid #111111; padding-top: 30px; margin-bottom: 40px; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+      .group { display: flex; flex-direction: column; gap: 8px; }
+      label { text-transform: uppercase; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; }
+      input[type="file"], input[type="number"] { border: 3px solid #111111; padding: 12px; font-size: 1rem; background: #FAFAFA; font-family: inherit; font-weight: bold; outline: none; }
+      input:focus { border-color: #FF5A36; }
+      button { background: #111111; color: #FAFAFA; border: none; padding: 16px; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; width: fit-content; }
+      button:hover { background: #FF5A36; }
+
+      /* Pure Minimalist Data Table Overrides */
+      .data-table { width: 100%; border-collapse: collapse; margin-top: 20px; border: 3px solid #111111; }
+      .data-table th, .data-table td { padding: 14px; text-align: left; font-size: 0.95rem; border-bottom: 1px solid #111111; }
+      .data-table th { background-color: #111111; color: #FAFAFA; text-transform: uppercase; font-weight: 900; font-size: 0.8rem; letter-spacing: 0.5px; }
+      .data-table tr:last-child td { border-bottom: none; }
+      .data-table tr:nth-child(even) { background-color: #FAFAFA; }
+      .data-table tr:nth-child(odd) { background-color: #FAFAFA; }
+
+      .results-wrapper { border-top: 3px solid #111111; padding-top: 40px; }
+      .results-wrapper h3 { font-size: 1.8rem; font-weight: 900; text-transform: uppercase; margin: 0 0 20px 0; letter-spacing: -0.5px; }
+      .error-box { border: 3px solid #111111; color: #FF5A36; padding: 20px; margin-top: 30px; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="back-link">← Dashboard</a>
+      <h2>Apriori Association Mining</h2>
+      <p>Processes transactional itemsets to establish deterministic logical relational links.</p>
+
+      <form action="/apriori" method="POST" enctype="multipart/form-data">
+        <div class="group">
+          <label>Transactional Data Stream (.csv)</label>
+          <input type="file" name="file" accept=".csv" required />
+        </div>
+        <div class="row">
+          <div class="group">
+            <label>Minimum Support Limit (0.01 - 1.0)</label>
+            <input type="number" step="0.01" name="min_support" value="0.1" required />
+          </div>
+          <div class="group">
+            <label>Minimum Confidence Threshold (0.01 - 1.0)</label>
+            <input type="number" step="0.01" name="min_confidence" value="0.5" required />
+          </div>
+        </div>
+        <button type="submit">Compile Rules Engine</button>
+      </form>
+
+      {% if rules_html %}
+      <div class="results-wrapper">
+        <h3>Compiled Relational Sets</h3>
+        {{ rules_html | safe }}
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <div class="error-box">Error // {{ error }}</div>
+      {% endif %}
+    </div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", function() {
+            var btn = form.querySelector("button[type='submit']") || form.querySelector("input[type='submit']") || form.querySelector(".btn");
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = "Processing (Model Loading in Background)...";
+                btn.value = "Processing (Model Loading)...";
+                btn.style.opacity = "0.7";
+                btn.style.cursor = "wait";
+            }
+        });
+    }
+});
+</script>
+</body>
+
+</html>
