@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data & AI Dashboard</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #FAFAFA; color: #111111; margin: 0; padding: 60px 20px; line-height: 1.4; }
+      .container { max-width: 800px; margin: 0 auto; }
+      h1 { font-size: 3.5rem; font-weight: 900; letter-spacing: -2px; margin: 0 0 10px 0; text-transform: uppercase; }
+      .subtitle { font-size: 1.2rem; color: #111111; margin-out: 0; margin-bottom: 50px; letter-spacing: -0.5px; opacity: 0.8; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+      .card { border: 3px solid #111111; padding: 25px; text-decoration: none; color: #111111; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.15s ease-in-out; position: relative; background: #FAFAFA; }
+      .card:hover { background-color: #FF5A36; color: #FAFAFA; border-color: #FF5A36; transform: translate(-4px, -4px); box-shadow: 6px 6px 0px #111111; }
+      .card .num { font-size: 0.9rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; opacity: 0.5; }
+      .card:hover .num { color: #FAFAFA; opacity: 0.8; }
+      .card h3 { font-size: 1.4rem; font-weight: 800; margin: 0; letter-spacing: -0.5px; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Data & AI Engine</h1>
+      <p class="subtitle">Select an analytical pipeline to execute on your data streams.</p>
+
+      <div class="grid">
+        <a href="/kmeans" class="card">
+          <span class="num">01 / Grouping</span>
+          <h3>K-Means Clustering</h3>
+        </a>
+        <a href="/dbscan" class="card">
+          <span class="num">02 / Discovery</span>
+          <h3>DBSCAN Density Clustering</h3>
+        </a>
+        <a href="/cnnGender" class="card">
+          <span class="num">03 / Vision</span>
+          <h3>CNN Gender Classification</h3>
+        </a>
+        <a href="/voiceSentiment" class="card">
+          <span class="num">04 / Audio NLP</span>
+          <h3>Voice Sentiment Analysis</h3>
+        </a>
+        <a href="/voiceQa" class="card">
+          <span class="num">05 / Voice System</span>
+          <h3>Voice QA Chatbot</h3>
+        </a>
+        <a href="/textQa" class="card">
+          <span class="num">06 / Text Engine</span>
+          <h3>Text QA Chatbot</h3>
+        </a>
+        <a href="/translate" class="card">
+          <span class="num">07 / Translation</span>
+          <h3>English to Urdu Script</h3>
+        </a>
+        <a href="/ner" class="card">
+          <span class="num">08 / Extraction</span>
+          <h3>Named Entity Recognition</h3>
+        </a>
+        <a href="/apriori" class="card">
+          <span class="num">09 / Rules Mining</span>
+          <h3>Apriori Market Basket</h3>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
