@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Voice Chatbot</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background-color: #FAFAFA; color: #111111; margin: 0; padding: 60px 20px; }
+      .container { max-width: 650px; margin: 0 auto; }
+      .back-link { text-decoration: none; color: #111111; font-weight: bold; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; display: inline-block; margin-bottom: 40px; }
+      .back-link:hover { color: #FF5A36; }
+      h2 { font-size: 2.5rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; margin: 0 0 10px 0; }
+      p { margin: 0 0 30px 0; opacity: 0.7; }
+      form { display: flex; flex-direction: column; gap: 25px; border-top: 3px solid #111111; padding-top: 30px; }
+      .group { display: flex; flex-direction: column; gap: 8px; }
+      label { text-transform: uppercase; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.5px; }
+      input[type="file"] { border: 3px solid #111111; padding: 25px; font-size: 1rem; background: #FAFAFA; font-family: inherit; font-weight: bold; }
+      button { background: #111111; color: #FAFAFA; border: none; padding: 16px; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; width: fit-content; }
+      button:hover { background: #FF5A36; }
+
+      .qa-card { margin-top: 40px; border: 3px solid #111111; background: #FAFAFA; padding: 30px; }
+      .qa-card h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; opacity: 0.5; }
+      .qa-card .transcription { font-size: 1.1rem; font-weight: bold; margin-bottom: 30px; }
+      .qa-card .synthesis { font-size: 1.4rem; font-weight: 800; color: #FF5A36; margin-bottom: 35px; text-transform: uppercase; letter-spacing: -0.5px; }
+
+      /* Stark audio player integration */
+      .audio-wrapper { border-top: 2px dashed #111111; padding-top: 25px; display: flex; flex-direction: column; gap: 10px; }
+      audio { width: 100%; border: 2px solid #111111; background: #FAFAFA; outline: none; }
+
+      .error-box { border: 3px solid #111111; color: #FF5A36; padding: 20px; margin-top: 30px; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <a href="/" class="back-link">← Dashboard</a>
+      <h2>Voice Processing QA</h2>
+      <p>Decodes voice-frequency matrices via Whisper ASR and cross-compiles audio output streams.</p>
+
+      <form action="/voiceQa" method="POST" enctype="multipart/form-data">
+        <div class="group">
+          <label>Audio Source Parameter (.wav, .mp3)</label>
+          <input type="file" name="audio" accept="audio/*" required />
+        </div>
+        <button type="submit">Transmit Array</button>
+      </form>
+
+      {% if question %}
+      <div class="qa-card">
+        <h3>Decoded Input Signal</h3>
+        <div class="transcription">"{{ question }}"</div>
+
+        <h3>Synthesized Response</h3>
+        <div class="synthesis">{{ answer }}</div>
+
+        <div class="audio-wrapper">
+          <h3>Output Signal Stream</h3>
+          <audio controls>
+            <source src="{{ url_for('static', filename=audio_path) }}" type="audio/mpeg" />
+          </audio>
+        </div>
+      </div>
+      {% endif %}
+
+      {% if error %}
+      <div class="error-box">Error // {{ error }}</div>
+      {% endif %}
+    </div>
+  
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var form = document.querySelector("form");
+    if (form) {
+        form.addEventListener("submit", function() {
+            var btn = form.querySelector("button[type='submit']") || form.querySelector("input[type='submit']") || form.querySelector(".btn");
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = "Processing (Model Loading in Background)...";
+                btn.value = "Processing (Model Loading)...";
+                btn.style.opacity = "0.7";
+                btn.style.cursor = "wait";
+            }
+        });
+    }
+});
+</script>
+</body>
+
+</html>
