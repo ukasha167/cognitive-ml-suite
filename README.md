@@ -1,7 +1,5 @@
 # CognitiveML Suite
 
- An interactive web-based dashboard designed to bridge the gap between complex artificial intelligence algorithms and intuitive user business applications. The system processes text, images, speech, and transactional tabular databases to deliver actionable business intelligence and automated cognitive responses.
-
 An all-in-one web application dashboard integrating classic unsupervised machine learning algorithms with state-of-the-art Deep Learning and Natural Language Processing (NLP) models. The platform enables users to perform complex data clustering, computer vision classification, speech transcription, text-to-speech generation, machine translation, named entity recognition, and transactional association mining through a unified and interactive web interface.
 
 ---
