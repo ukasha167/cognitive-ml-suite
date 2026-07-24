@@ -1,6 +1,6 @@
-# CognitiveML Suite
+<img width="1214" height="320" alt="image" src="https://github.com/user-attachments/assets/1009d2c9-af17-48f5-b38a-777fc1dcd1e5" /># CognitiveML Suite
 
-An all-in-one web application dashboard integrating classic unsupervised machine learning algorithms with state-of-the-art Deep Learning and Natural Language Processing (NLP) models. The platform enables users to perform complex data clustering, computer vision classification, speech transcription, text-to-speech generation, machine translation, named entity recognition, and transactional association mining through a unified and interactive web interface.
+An all-in-one web application dashboard integrating classic unsupervised machine learning algorithms with state-of-the-art Deep Learning and Natural Language Processing (NLP) models.Engineered entirely from scratch as a collaborative two-developer pair project, it enables users to perform complex data clustering, computer vision classification, speech transcription, text-to-speech generation, machine translation, named entity recognition, and transactional association mining through a unified and interactive web interface.
 
 ---
 
